@@ -154,7 +154,7 @@ namespace Framework
             return $result;
         }
         
-        public function flatten($array, $return = array())
+        public static function flatten($array, $return = array())
         {
             foreach ($array as $key => $value)
             {
