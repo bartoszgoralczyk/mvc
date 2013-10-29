@@ -256,7 +256,7 @@ namespace Framework
         {
             $url= $this->url;
             $parameters = array();
-            $controller = "index";
+            $controller = "home";
             $action = "index";
                     
             foreach ($this->_routes as $route)
@@ -277,7 +277,7 @@ namespace Framework
             
             if (sizeof($parts) > 0)
             {
-                $controller = $parts[0];
+                $controller = !empty($parts[0]) ? $parts[0] : $controller;
                 
                 if (sizeof($parts) >= 2)
                 {

@@ -13,5 +13,6 @@ $router->addRoute(
     ))
 );
 
-$router->url = "chris/profile";
+//$router->url = "chris/profile";
+$router->url = $_SERVER['QUERY_STRING'];
 $router->dispatch();

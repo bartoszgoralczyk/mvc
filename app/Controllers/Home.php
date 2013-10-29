@@ -13,6 +13,11 @@ namespace App\Controllers
         public function index()
         {
             echo "here";
+            
+        }
+        
+        public function db()
+        {
             $database = new \Framework\Database(array(
                 "type" => "mysql",
                 "options" => array(
