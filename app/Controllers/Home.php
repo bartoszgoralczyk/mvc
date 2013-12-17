@@ -2,6 +2,7 @@
 
 namespace App\Controllers
 {
+    use App\Models as Models;
 
     class Home extends \Framework\Controller
     {
@@ -9,13 +10,55 @@ namespace App\Controllers
         {
             parent::__construct($options);
         }
-        
+
         public function index()
         {
             echo "here";
-            
+
         }
-        
+
+	public function user()
+	{
+
+	    $database = new \Framework\Database(array(
+		"type" => "mysql",
+		"options" => array(
+		    "host" => "localhost",
+		    "username" => "root",
+		    "password" => "",
+		    "schema" => "mvc"
+		)
+	    ));
+	    $database = $database->initialize()->connect();
+/*
+	    $user = new Models\User(array(
+		"connector" => $database
+	    ));
+	    $database->sync($user);
+*/
+	    $elijah = new Models\User(array(
+		"connector" => $database,
+		"first" => "chris",
+		"last" => "pitt",
+		"email" => "chris@example.com",
+		"password" => "password",
+		"live" => true,
+		"deleted" => false,
+		"created" => date("Y-m-d H:i:s"),
+		"modified" => date("Y-m-d H:i:s")
+	    ));
+	    $elijah->save();
+	    $all = User::all(array(
+		"last = ?" => "Pitt"
+	    ));
+	    $elijah->delete();
+	}
+
+	public function user2()
+	{
+	    $user = new Models\User(array());
+	}
+
         public function db()
         {
             $database = new \Framework\Database(array(

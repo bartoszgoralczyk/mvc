@@ -1,0 +1,20 @@
+#LoadModule rewrite_module modules/mod_rewrite.so
+#<Directory />
+#    Options FollowSymlinks
+#    AllowOverride None
+#    Order deny,allow
+#    Deny from all
+#    Satisfy all
+#</Directory>
+
+#RewriteEngine on
+#RewriteCond $1 !^(index\.php|images|robots\.txt)
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ index.php?$1
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !=/favicon.ico
+RewriteRule ^([a-zA-Z0-9\/\-_]+)\.?([a-zA-Z]+)?$ index.php?url=$1&extension=$2 [QSA,L]
